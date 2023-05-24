@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+
+//To migrate this file use the command: npx prisma migrate dev
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Personajes {
+ id                  Int      @id @default(autoincrement())
+ nombre              String   @db.VarChar(45)
+ fuerza              Int
+ fecha_nacimiento    DateTime
+ objeto              String   @db.VarChar(30)
+  
+ idpersonajes        personaje_tiene_trabajo[]
+ idpersonajes2       Karts[]
+ idpersonajes3       personaje_habita_reino[]
+}
+
+model Trabajos {
+  id          Int @id @default(autoincrement())
+  descripcion String @db.VarChar(45)
+  sueldo      Int
+  
+  idtrabajos    personaje_tiene_trabajo[]
+}
+
+model personaje_tiene_trabajo {
+  id_trabajo      Int   
+  id_personaje    Int 
+  fecha_inicio    DateTime
+  fecha_termino   DateTime?
+
+  idtrabajos      Trabajos     @relation(fields: [id_trabajo], references: [id])
+  idpersonajes    Personajes   @relation(fields: [id_personaje], references: [id])
+
+  @@id([id_trabajo, id_personaje]) 
+  }
+
+model Karts {
+  id                Int @id @default(autoincrement())
+  modelo            String @db.VarChar(45)
+  color             String @db.VarChar(45)
+  velocidad_maxima  Int    
+  id_personaje      Int   
+  
+  personajes2       Personajes?  @relation(fields: [id_personaje], references: [id])
+}
+
+model personaje_habita_reino {
+  id_personaje      Int 
+  id_reino          Int 
+  fecha_registro    DateTime 
+  es_gobernante     Boolean @db.Boolean
+
+  idpersonajes3     Personajes @relation(fields: [id_personaje], references: [id])
+  idreino           Reinos @relation(fields: [id_reino],references: [id])
+  @@id([id_personaje,id_reino])
+}
+
+model Reinos {
+  id Int  @id @default(autoincrement())
+  nombre String @db.VarChar(45)
+  ubicacion String @db.VarChar(45)
+  superficie Int
+  
+  idreino personaje_habita_reino[]
+  reinos Defensas_Reinos[]
+  diplomacias1 Diplomacias[] @relation("diplomacias1")
+  diplomacias2 Diplomacias[] @relation("diplomacias2")
+  
+  
+}
+
+model Defensas {
+  id Int  @id @default(autoincrement())
+  defensa String @db.VarChar(45)
+  defensas  Defensas_Reinos[]
+}
+
+model Defensas_Reinos {
+  id_defensas Int
+  id_reinos Int
+  defensas Defensas @relation(fields: [id_defensas], references: [id])
+  reinos Reinos @relation(fields: [id_reinos], references: [id])
+
+  @@id([id_defensas, id_reinos])  //Clave primaria compuesta
+
+}
+
+model Diplomacias {
+  id_reino_1  Int  
+  id_reino_2  Int  
+  es_aliado   Boolean
+  reinos1     Reinos @relation("diplomacias1", fields: [id_reino_1], references: [id])
+  reinos2     Reinos @relation("diplomacias2", fields: [id_reino_2], references: [id])
+
+  @@id([id_reino_1, id_reino_2])
+}
