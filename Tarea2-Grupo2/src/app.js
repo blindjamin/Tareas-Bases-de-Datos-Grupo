@@ -10,11 +10,11 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //endpoints(Routes)
-app.get('/users', UsersController.getUsers)
-app.get('/users/:id', UsersController.getUserById)
-app.post('/users', UsersController.createUser)
-app.get('/users/:id/posts', UsersController.usersPosts)
-
+app.get('/users', UsersController.getPersonajes)
+app.get('/users/:id', UsersController.getPersonajeById)
+app.post('/users', UsersController.createPersonaje)
+app.put('/users:id', UsersController.updatePersonaje)
+app.delete('/users:id', UsersController.deletePersonaje)
 
 //==========================================================//
 app.get('/', (req, res) => {
