@@ -10,11 +10,52 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 //endpoints(Routes)
-app.get('/users', UsersController.getPersonajes)
-app.get('/users/:id', UsersController.getPersonajeById)
-app.post('/users', UsersController.createPersonaje)
-app.put('/users:id', UsersController.updatePersonaje)
-app.delete('/users:id', UsersController.deletePersonaje)
+//Personajes
+app.get('/personajes', UsersController.getPersonajes)
+app.get('/personajes/:id', UsersController.getPersonajeById)
+app.post('/personajes', UsersController.createPersonaje)
+app.put('/personajes:id', UsersController.updatePersonaje)
+app.delete('/personajes:id', UsersController.deletePersonaje)
+
+//Trabajos
+app.get('/trabajos', UsersController.getTrabajos)
+app.get('/trabajos/:id', UsersController.getTrabajosById)
+app.post('/trabajos', UsersController.createTrabajo)
+app.put('/trabajos:id', UsersController.updateTrabajo)
+app.delete('/trabajos:id', UsersController.deleteTrabajo)
+
+//Persona_Tiene_Trabajo
+app.get('/persona-tiene-trabajo', UsersController.getPersonaTieneTrabajo)
+app.get('/persona-tiene-trabajo/:id', UsersController.getPersonaTieneTrabajoById)
+app.post('/persona-tiene-trabajo', UsersController.createPersonaTieneTrabajo)
+app.put('/persona-tiene-trabajo:id', UsersController.updatePersonaTieneTrabajo)
+app.delete('/persona-tiene-trabajo:id', UsersController.deletePersonaTieneTrabajo)
+
+//Karts
+app.get('/karts', UsersController.getKarts)
+app.get('/karts/:id', UsersController.getKartById)
+app.post('/karts', UsersController.createKart)
+app.put('/karts:id', UsersController.updateKart)
+app.delete('/karts:id', UsersController.deleteKart)
+
+//Personaje_Habita_Reino
+app.get('/personaje-habita-reino', UsersController.getPersonajesHabitanReino)
+app.get('/personaje-habita-reino/:id', UsersController.getPersonaTieneTrabajoById)
+app.post('/personaje-habita-reino', UsersController.createPersonajeHabitaReino)
+app.put('/personaje-habita-reino:id', UsersController.updatePersonajeHabitaReino)
+app.delete('/personaje-habita-reino:id', UsersController.deletePersonajeHabitaReino)
+
+
+//Reinos.
+app.get('/reinos', UsersController.getReinos)
+app.get('/reinos/:id', UsersController.getReinoById)
+app.post('/reinos', UsersController.createReino)
+app.put('/reinos:id', UsersController.updateReino)
+app.delete('/reinos:id', UsersController.deleteReino)
+
+
+
+
 
 //==========================================================//
 app.get('/', (req, res) => {
