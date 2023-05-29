@@ -53,8 +53,28 @@ app.post('/reinos', UsersController.createReino)
 app.put('/reinos:id', UsersController.updateReino)
 app.delete('/reinos:id', UsersController.deleteReino)
 
+//Defensas. 
+app.get('/defensas', UsersController.getDefensas)
+app.get('/defensas/:id', UsersController.getDefensaById)
+app.post('/defensas', UsersController.createDefensa)
+app.put('/defensas:id', UsersController.updateDefensa)
+app.delete('/defensas:id', UsersController.deleteDefensa)
 
 
+//Defensas_Reinos. 
+app.get('/defensa-reinos', UsersController.getDefensasReinos)
+app.get('/defensa-reinos/:id', UsersController.getDefensaReinoById)
+app.post('/defensa-reinos', UsersController.createDefensaReino)
+app.put('/defensa-reinos:id', UsersController.updateDefensaReino)
+app.delete('/defensa-reinos:id', UsersController.deleteDefensaReino)
+
+
+//Diplomacias. 
+app.get('/diplomacias', UsersController.getDiplomacias)
+app.get('/diplomacias/:id', UsersController.getDiplomaciaById)
+app.post('/diplomacias', UsersController.createDiplomacia)
+app.put('/diplomacias:id', UsersController.updateDiplomacia)
+app.delete('/diplomacias:id', UsersController.deleteDiplomacia)
 
 
 //==========================================================//
