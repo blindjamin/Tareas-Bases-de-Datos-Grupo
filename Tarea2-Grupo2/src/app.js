@@ -49,7 +49,7 @@ app.delete('/karts:id', KartsController.deleteKart)
 
 //Personaje_Habita_Reino
 app.get('/personaje-habita-reino', PersonajeHabitaReinoController.getPersonajesHabitanReino)
-app.get('/personaje-habita-reino/:id', PersonajeHabitaReinoController.getPersonaTieneTrabajoById)
+app.get('/personaje-habita-reino/:id', PersonajeHabitaReinoController.getPersonajeHabitaReinoById)
 app.post('/personaje-habita-reino', PersonajeHabitaReinoController.createPersonajeHabitaReino)
 app.put('/personaje-habita-reino:id', PersonajeHabitaReinoController.updatePersonajeHabitaReino)
 app.delete('/personaje-habita-reino:id', PersonajeHabitaReinoController.deletePersonajeHabitaReino)
