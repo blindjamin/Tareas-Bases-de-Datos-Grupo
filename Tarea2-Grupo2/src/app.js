@@ -23,67 +23,67 @@ app.use(morgan('dev'));
 app.get('/personajes', PersonajesController.getPersonajes)
 app.get('/personajes/:id', PersonajesController.getPersonajeById)
 app.post('/personajes', PersonajesController.createPersonaje)
-app.put('/personajes:id', PersonajesController.updatePersonaje)
-app.delete('/personajes:id', PersonajesController.deletePersonaje)
+app.put('/personajes/:id', PersonajesController.updatePersonaje)
+app.delete('/personajes/:id', PersonajesController.deletePersonaje)
 
 //Trabajos
 app.get('/trabajos', TrabajosController.getTrabajos)
 app.get('/trabajos/:id', TrabajosController.getTrabajosById)
 app.post('/trabajos', TrabajosController.createTrabajo)
-app.put('/trabajos:id', TrabajosController.updateTrabajo)
-app.delete('/trabajos:id', TrabajosController.deleteTrabajo)
+app.put('/trabajos/:id', TrabajosController.updateTrabajo)
+app.delete('/trabajos/:id', TrabajosController.deleteTrabajo)
 
 //Persona_Tiene_Trabajo
 app.get('/persona-tiene-trabajo', PersonajeTieneTrabajoController.getPersonaTieneTrabajo)
 app.get('/persona-tiene-trabajo/:id', PersonajeTieneTrabajoController.getPersonaTieneTrabajoById)
 app.post('/persona-tiene-trabajo', PersonajeTieneTrabajoController.createPersonaTieneTrabajo)
-app.put('/persona-tiene-trabajo:id', PersonajeTieneTrabajoController.updatePersonaTieneTrabajo)
-app.delete('/persona-tiene-trabajo:id', PersonajeTieneTrabajoController.deletePersonaTieneTrabajo)
+app.put('/persona-tiene-trabajo/:id', PersonajeTieneTrabajoController.updatePersonaTieneTrabajo)
+app.delete('/persona-tiene-trabajo/:id', PersonajeTieneTrabajoController.deletePersonaTieneTrabajo)
 
 //Karts
 app.get('/karts', KartsController.getKarts)
 app.get('/karts/:id', KartsController.getKartById)
 app.post('/karts', KartsController.createKart)
-app.put('/karts:id', KartsController.updateKart)
-app.delete('/karts:id', KartsController.deleteKart)
+app.put('/karts/:id', KartsController.updateKart)
+app.delete('/karts/:id', KartsController.deleteKart)
 
 //Personaje_Habita_Reino
 app.get('/personaje-habita-reino', PersonajeHabitaReinoController.getPersonajesHabitanReino)
 app.get('/personaje-habita-reino/:id', PersonajeHabitaReinoController.getPersonajeHabitaReinoById)
 app.post('/personaje-habita-reino', PersonajeHabitaReinoController.createPersonajeHabitaReino)
-app.put('/personaje-habita-reino:id', PersonajeHabitaReinoController.updatePersonajeHabitaReino)
-app.delete('/personaje-habita-reino:id', PersonajeHabitaReinoController.deletePersonajeHabitaReino)
+app.put('/personaje-habita-reino/:id', PersonajeHabitaReinoController.updatePersonajeHabitaReino)
+app.delete('/personaje-habita-reino/:id', PersonajeHabitaReinoController.deletePersonajeHabitaReino)
 
 
 //Reinos.
 app.get('/reinos', ReinosController.getReinos)
 app.get('/reinos/:id', ReinosController.getReinoById)
 app.post('/reinos', ReinosController.createReino)
-app.put('/reinos:id', ReinosController.updateReino)
-app.delete('/reinos:id', ReinosController.deleteReino)
+app.put('/reinos/:id', ReinosController.updateReino)
+app.delete('/reinos/:id', ReinosController.deleteReino)
 
 //Defensas. 
 app.get('/defensas', DefensasController.getDefensas)
 app.get('/defensas/:id', DefensasController.getDefensaById)
 app.post('/defensas', DefensasController.createDefensa)
-app.put('/defensas:id', DefensasController.updateDefensa)
-app.delete('/defensas:id', DefensasController.deleteDefensa)
+app.put('/defensas/:id', DefensasController.updateDefensa)
+app.delete('/defensas/:id', DefensasController.deleteDefensa)
 
 
 //Defensas_Reinos. 
 app.get('/defensa-reinos', DefensasReinoController.getDefensasReinos)
 app.get('/defensa-reinos/:id', DefensasReinoController.getDefensaReinoById)
 app.post('/defensa-reinos', DefensasReinoController.createDefensaReino)
-app.put('/defensa-reinos:id', DefensasReinoController.updateDefensaReino)
-app.delete('/defensa-reinos:id', DefensasReinoController.deleteDefensaReino)
+app.put('/defensa-reinos/:id', DefensasReinoController.updateDefensaReino)
+app.delete('/defensa-reinos/:id', DefensasReinoController.deleteDefensaReino)
 
 
 //Diplomacias. 
 app.get('/diplomacias', DiplomaciasController.getDiplomacias)
 app.get('/diplomacias/:id', DiplomaciasController.getDiplomaciaById)
 app.post('/diplomacias', DiplomaciasController.createDiplomacia)
-app.put('/diplomacias:id', DiplomaciasController.updateDiplomacia)
-app.delete('/diplomacias:id', DiplomaciasController.deleteDiplomacia)
+app.put('/diplomacias/:id', DiplomaciasController.updateDiplomacia)
+app.delete('/diplomacias/:id', DiplomaciasController.deleteDiplomacia)
 
 
 //==========================================================//
