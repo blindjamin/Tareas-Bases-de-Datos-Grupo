@@ -34,11 +34,11 @@ app.put('/trabajos/:id', TrabajosController.updateTrabajo)
 app.delete('/trabajos/:id', TrabajosController.deleteTrabajo)
 
 //Persona_Tiene_Trabajo
-app.get('/persona-tiene-trabajo', PersonajeTieneTrabajoController.getPersonaTieneTrabajo)
-app.get('/persona-tiene-trabajo/:id', PersonajeTieneTrabajoController.getPersonaTieneTrabajoById)
-app.post('/persona-tiene-trabajo', PersonajeTieneTrabajoController.createPersonaTieneTrabajo)
-app.put('/persona-tiene-trabajo/:id', PersonajeTieneTrabajoController.updatePersonaTieneTrabajo)
-app.delete('/persona-tiene-trabajo/:id', PersonajeTieneTrabajoController.deletePersonaTieneTrabajo)
+app.get('/personaje-tiene-trabajo', PersonajeTieneTrabajoController.getPersonaTieneTrabajo)
+app.get('/personaje-tiene-trabajo/:id', PersonajeTieneTrabajoController.getPersonaTieneTrabajoById)
+app.post('/personaje-tiene-trabajo', PersonajeTieneTrabajoController.createPersonaTieneTrabajo)
+app.put('/personaje-tiene-trabajo/:id', PersonajeTieneTrabajoController.updatePersonaTieneTrabajo)
+app.delete('/personaje-tiene-trabajo/:id_trabajo/:id_personaje', PersonajeTieneTrabajoController.deletePersonaTieneTrabajo)
 
 //Karts
 app.get('/karts', KartsController.getKarts)

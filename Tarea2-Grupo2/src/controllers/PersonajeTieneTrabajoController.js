@@ -33,14 +33,33 @@ const getPersonaTieneTrabajoById = async (req, res) => {
 const createPersonaTieneTrabajo = async (req, res) => {
   const { id_trabajo, id_personaje, fecha_inicio, fecha_termino } = req.body;
   try {
+    // Verificar si el personaje existe
+    const personajeExistente = await prisma.Personajes.findUnique({
+      where: { id: id_personaje },
+    });
+
+    if (!personajeExistente) {
+      return res.status(404).json({ error: 'El personaje no existe' });
+    }
+
+    // Verificar si el trabajo existe
+    const trabajoExistente = await prisma.Trabajos.findUnique({
+      where: { id: id_trabajo },
+    });
+
+    if (!trabajoExistente) {
+      return res.status(404).json({ error: 'El trabajo no existe' });
+    }
+
     const nuevoPersonajeTieneTrabajo = await prisma.personaje_tiene_trabajo.create({
       data: {
-        id_trabajo,
-        id_personaje,
         fecha_inicio,
         fecha_termino,
+        idtrabajos: { connect: { id: id_trabajo } },
+        idpersonajes: { connect: { id: id_personaje } },
       },
     });
+
     res.json(nuevoPersonajeTieneTrabajo);
   } catch (error) {
     console.error(error);
@@ -73,15 +92,24 @@ const updatePersonaTieneTrabajo = async (req, res) => {
 
 // Borrar registro
 const deletePersonaTieneTrabajo = async (req, res) => {
-  const { id } = req.params;
+  const { id_trabajo, id_personaje } = req.params;
   try {
-    await prisma.persona_tiene_trabajo.delete({ where: { id: parseInt(id) } });
-    res.json({ message: 'Relacion persona-trabajo eliminada correctamente' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al eliminar la relacion persona-trabajo' });
-  }
+    // Eliminar la relación persona_tiene_trabajo
+    await prisma.personaje_tiene_trabajo.delete({
+      where: {
+        id_trabajo_id_personaje: {
+          id_trabajo: parseInt(id_trabajo),
+          id_personaje: parseInt(id_personaje),
+        },
+      },
+    });
+
+    res.status(200).json({ message: 'Persona_tiene_trabajo deleted successfully' });
+} catch (error) {
+  res.status(500).json({ error: 'Unable to delete Persona_tiene_trabajo' });
+}
 };
+
 
 
 

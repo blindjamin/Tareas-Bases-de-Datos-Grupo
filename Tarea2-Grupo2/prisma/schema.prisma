@@ -17,7 +17,7 @@ model Personajes {
  nombre              String   @db.VarChar(45)
  fuerza              Int
  fecha_nacimiento    DateTime
- objeto              String   @db.VarChar(30)
+ objeto              String?   @db.VarChar(30)
   
  idpersonajes        personaje_tiene_trabajo[]
  idpersonajes2       Karts[]
@@ -26,7 +26,7 @@ model Personajes {
 
 model Trabajos {
   id          Int @id @default(autoincrement())
-  descripcion String @db.VarChar(45)
+  descripcion String? @db.VarChar(45)
   sueldo      Int
   
   idtrabajos    personaje_tiene_trabajo[]
@@ -48,8 +48,8 @@ model Karts {
   id                Int @id @default(autoincrement())
   modelo            String @db.VarChar(45)
   color             String @db.VarChar(45)
-  velocidad_maxima  Int    
-  id_personaje      Int   
+  velocidad_maxima  Int? 
+  id_personaje      Int?  
   
   personajes2       Personajes?  @relation(fields: [id_personaje], references: [id])
 }
