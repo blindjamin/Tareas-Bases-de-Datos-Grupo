@@ -8,7 +8,6 @@ import KartsController from './controllers/KartsController.js'
 import PersonajeHabitaReinoController from './controllers/PersonajeHabitaReinoController.js';
 import PersonajeTieneTrabajoController from './controllers/PersonajeTieneTrabajoController.js'
 import ReinosController from './controllers/ReinosController.js';
-
 import morgan from 'morgan';
 
 const ENV = process.env;
@@ -18,7 +17,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 
-//endpoints(Routes)
+//Rutas para consultas.
 //Personajes
 app.get('/personajes', PersonajesController.getPersonajes)
 app.get('/personajes/:id', PersonajesController.getPersonajeById)
@@ -35,9 +34,9 @@ app.delete('/trabajos/:id', TrabajosController.deleteTrabajo)
 
 //Persona_Tiene_Trabajo
 app.get('/personaje-tiene-trabajo', PersonajeTieneTrabajoController.getPersonaTieneTrabajo)
-app.get('/personaje-tiene-trabajo/:id', PersonajeTieneTrabajoController.getPersonaTieneTrabajoById)
+app.get('/personaje-tiene-trabajo/:id_trabajo/:id_personaje', PersonajeTieneTrabajoController.getPersonaTieneTrabajoById)
 app.post('/personaje-tiene-trabajo', PersonajeTieneTrabajoController.createPersonaTieneTrabajo)
-app.put('/personaje-tiene-trabajo/:id', PersonajeTieneTrabajoController.updatePersonaTieneTrabajo)
+app.put('/personaje-tiene-trabajo/:id_trabajo/:id_personaje', PersonajeTieneTrabajoController.updatePersonaTieneTrabajo)
 app.delete('/personaje-tiene-trabajo/:id_trabajo/:id_personaje', PersonajeTieneTrabajoController.deletePersonaTieneTrabajo)
 
 //Karts
@@ -49,10 +48,10 @@ app.delete('/karts/:id', KartsController.deleteKart)
 
 //Personaje_Habita_Reino
 app.get('/personaje-habita-reino', PersonajeHabitaReinoController.getPersonajesHabitanReino)
-app.get('/personaje-habita-reino/:id', PersonajeHabitaReinoController.getPersonajeHabitaReinoById)
+app.get('/personaje-habita-reino/:id_personaje/:id_reino', PersonajeHabitaReinoController.getPersonajeHabitaReinoById)
 app.post('/personaje-habita-reino', PersonajeHabitaReinoController.createPersonajeHabitaReino)
-app.put('/personaje-habita-reino/:id', PersonajeHabitaReinoController.updatePersonajeHabitaReino)
-app.delete('/personaje-habita-reino/:id', PersonajeHabitaReinoController.deletePersonajeHabitaReino)
+app.put('/personaje-habita-reino/:id_personaje/:id_reino', PersonajeHabitaReinoController.updatePersonajeHabitaReino)
+app.delete('/personaje-habita-reino/:id_personaje/:id_reino', PersonajeHabitaReinoController.deletePersonajeHabitaReino)
 
 
 //Reinos.
@@ -72,18 +71,18 @@ app.delete('/defensas/:id', DefensasController.deleteDefensa)
 
 //Defensas_Reinos. 
 app.get('/defensa-reinos', DefensasReinoController.getDefensasReinos)
-app.get('/defensa-reinos/:id', DefensasReinoController.getDefensaReinoById)
+app.get('/defensa-reinos/:id_defensas/:id_reinos', DefensasReinoController.getDefensaReinoById)
 app.post('/defensa-reinos', DefensasReinoController.createDefensaReino)
-app.put('/defensa-reinos/:id', DefensasReinoController.updateDefensaReino)
-app.delete('/defensa-reinos/:id', DefensasReinoController.deleteDefensaReino)
+app.put('/defensa-reinos/:id_defensas/:id_reinos', DefensasReinoController.updateDefensaReino)
+app.delete('/defensa-reinos/:id_defensas/:id_reinos', DefensasReinoController.deleteDefensaReino)
 
 
 //Diplomacias. 
 app.get('/diplomacias', DiplomaciasController.getDiplomacias)
-app.get('/diplomacias/:id', DiplomaciasController.getDiplomaciaById)
+app.get('/diplomacias/:id_reino_1/:id_reino_2', DiplomaciasController.getDiplomaciaById)
 app.post('/diplomacias', DiplomaciasController.createDiplomacia)
-app.put('/diplomacias/:id', DiplomaciasController.updateDiplomacia)
-app.delete('/diplomacias/:id', DiplomaciasController.deleteDiplomacia)
+app.put('/diplomacias/:id_reino_1/:id_reino_2', DiplomaciasController.updateDiplomacia)
+app.delete('/diplomacias/:id_reino_1/:id_reino_2', DiplomaciasController.deleteDiplomacia)
 
 
 //==========================================================//
@@ -95,7 +94,7 @@ app.get('/', (req, res) => {
 
 // 404 not found route
 app.use((_, res) => {
-    res.status(404).json({ message: 'Not found Crack!' });
+    res.status(404).json({ message: '¡Lo lamentamos!, no encontramos esta ruta, puede que no exista o haya sido eliminada. :c' });
 })
 
 

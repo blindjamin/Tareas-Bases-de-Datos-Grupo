@@ -9,7 +9,7 @@ const getPersonaTieneTrabajo = async (req, res) => {
     res.json(persona_tiene_trabajo);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al obtener la relacion personaje-trabajo' });
+    res.status(500).json({ error: 'Error al obtener las relaciones personaje-trabajo' });
   }
 };
 
@@ -63,32 +63,33 @@ const createPersonaTieneTrabajo = async (req, res) => {
     res.json(nuevoPersonajeTieneTrabajo);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al crear la relación personaje-trabajo' });
+    res.status(500).json({ error: 'Error al crear la relación Personaje-Trabajo' });
   }
 };
 
 
 // Editar registro  
 const updatePersonaTieneTrabajo = async (req, res) => {
-  const { id } = req.params;
-  const { id_trabajo,id_personaje,fecha_inicio,fecha_termino } = req.body;
   try {
-    const persona_tiene_trabajoActualizado = await prisma.personaje_tiene_trabajo.update({
-      where: { id: parseInt(id) },
+    const { id_trabajo, id_personaje } = req.params;
+    const { fecha_inicio, fecha_termino } = req.body;
+
+    const updatedPersonaTieneTrabajo = await prisma.personaje_tiene_trabajo.update({
+      where: {
+        id_trabajo_id_personaje: { id_trabajo: Number(id_trabajo), id_personaje: Number(id_personaje) },
+      },
       data: {
-        id_trabajo,
-        id_personaje,
-        fecha_inicio,
-        fecha_termino,
+        fecha_inicio: new Date(fecha_inicio),
+        fecha_termino: new Date(fecha_termino),
       },
     });
-    res.json(persona_tiene_trabajoActualizado);
+
+    res.json(updatedPersonaTieneTrabajo);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al actualizar la relacion persona-trabajo' });
+    res.status(500).json({ error: 'Ocurrió un error al actualizar la relación Personaje-Trabajo.' });
   }
 };
-
 
 // Borrar registro
 const deletePersonaTieneTrabajo = async (req, res) => {
@@ -104,9 +105,9 @@ const deletePersonaTieneTrabajo = async (req, res) => {
       },
     });
 
-    res.status(200).json({ message: 'Persona_tiene_trabajo deleted successfully' });
+    res.status(200).json({ message: 'Relacion Persona-Trabajo eliminada exitosamente' });
 } catch (error) {
-  res.status(500).json({ error: 'Unable to delete Persona_tiene_trabajo' });
+  res.status(500).json({ error: 'Error al eliminar la relacion Persona-Trabajo' });
 }
 };
 
