@@ -33,6 +33,9 @@ const getDiplomaciaById = async (req, res) => {
 // Crear un nuevo registro.
 const createDiplomacia = async (req, res) => {
   const { id_reino_1, id_reino_2, es_aliado } = req.body;
+  if (id_reino_1 === id_reino_2) {
+    return res.status(400).json({ error: 'Los valores de id_reino_1 y id_reino_2 no pueden ser iguales.' });
+  }
   try {
     const nuevaDiplomacia = await prisma.diplomacias.create({
       data: {
@@ -52,6 +55,9 @@ const createDiplomacia = async (req, res) => {
 const updateDiplomacia = async (req, res) => {
   const { id_reino_1, id_reino_2 } = req.params;
   const { id_reino_1: newIdReino1, id_reino_2: newIdReino2, es_aliado } = req.body;
+  if (newIdReino1 === newIdReino2) {
+    return res.status(400).json({ error: 'Los valores de id_reino_1 y id_reino_2 no pueden ser iguales.' });
+  }
   try {
     const diplomaciaActualizada = await prisma.diplomacias.update({
       where: { id_reino_1_id_reino_2: { id_reino_1: parseInt(id_reino_1), id_reino_2: parseInt(id_reino_2) } },
