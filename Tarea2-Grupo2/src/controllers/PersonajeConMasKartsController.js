@@ -1,5 +1,4 @@
 import prisma from '../prismaClient.js'
-import PersonajeHabitaReinoController from './PersonajeHabitaReinoController.js';
 
 
 const getPersonajeConMasKarts = async (req, res) => {
