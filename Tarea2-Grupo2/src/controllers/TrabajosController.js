@@ -9,7 +9,7 @@ const getTrabajos = async (req, res) => {
     res.json(trabajos);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error al obtener los personajes' });
+    res.status(500).json({ error: 'Error al obtener los trabajos' });
   }
 };
 
